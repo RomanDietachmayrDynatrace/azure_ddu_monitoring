@@ -1,0 +1,17 @@
+name: custom:azure-ddu-monitoring
+version: 0.0.3
+minDynatraceVersion: "1.285"
+author:
+  name: "Dynatrace"
+
+python:
+  runtime:
+    module: azure_ddu_monitoring
+    version:
+      min: "3.10"
+
+  activation:
+    remote:
+      path: activationSchema.json
+    local:
+      path: activationSchema.json

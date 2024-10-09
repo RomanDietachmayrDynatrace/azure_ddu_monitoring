@@ -1,0 +1,126 @@
+{
+  "types": {
+    "dynatrace.datasource.python:azure_ddu_monitoring-endpoint": {
+      "type": "object",
+      "displayName": "Azure DDU monitoring endpoint",
+      "summaryPattern": "Azure DDU reporting for environment {environment_url} every {query_interval_min} min",
+      "properties": {
+        "environment_url": {
+          "displayName": "Dynatrace Environment URL",
+          "description": "Managed: https://{your-domain}/e/{your-environment-id} %0A SaaS: https://{your-environment-id}.live.dynatrace.com",
+          "type": "text",
+          "nullable": false,
+          "default": "",
+          "constraints": [
+            {
+              "type": "LENGTH",
+              "minLength": 1,
+              "maxLength": 500
+            }
+          ],
+          "maxItems": 1
+        },
+        "api_token": {
+          "displayName": "Dynatrace API token",
+          "description": "\"Read entities\" and \"Read metrics\" permissions required",
+          "type": "secret",
+          "nullable": false,
+          "default": "",
+          "constraints": [
+            {
+              "type": "LENGTH",
+              "minLength": 1,
+              "maxLength": 500
+            }
+          ],
+          "maxItems": 1
+        },
+        "query_interval_min": {
+          "displayName": "Query interval in minutes",
+          "type": "integer",
+          "nullable": false,
+          "default": 1,
+          "constraints": [
+            {
+              "type": "RANGE",
+              "minLength": 1,
+              "maxLength": 1440
+            }
+          ],
+          "maxItems": 1
+        },
+        "summarize_by_subscription": {
+          "displayName": "Summarize DDU consumption by Azure subscription instead of Azure entity",
+          "type": "boolean",
+          "default": false,
+          "maxItems": 1
+        }
+      }
+    },
+    "pythonRemote": {
+      "type": "object",
+      "properties": {
+        "endpoints": {
+          "displayName": "Azure DDU monitoring endpoint",
+          "type": "list",
+          "items": {
+            "type": {
+              "$ref": "#/types/dynatrace.datasource.python:azure_ddu_monitoring-endpoint"
+            }
+          },
+          "nullable": false,
+          "minItems": 1,
+          "maxItems": 100,
+          "metaData": {
+            "addItemButton": "Add endpoint"
+          }
+        }
+      }
+    },
+    "pythonLocal": {
+      "type": "object",
+      "properties": {
+        "endpoints": {
+          "displayName": "Azure DDU monitoring endpoint",
+          "type": "list",
+          "items": {
+            "type": {
+              "$ref": "#/types/dynatrace.datasource.python:azure_ddu_monitoring-endpoint"
+            }
+          },
+          "nullable": false,
+          "minItems": 1,
+          "maxItems": 100,
+          "metaData": {
+            "addItemButton": "Add endpoint"
+          }
+        }
+      }
+    }
+  },
+  "dynatrace": "1",
+  "description": "azure_ddu_monitoring configuration",
+  "schemaId": "python-extension.activation",
+  "displayName": "azure_ddu_monitoring configuration",
+  "ownerProductManagement": "dynatrace",
+  "ownerDevelopment": "dynatrace",
+  "maturity": "IN_DEVELOPMENT",
+  "allowedScopes": [
+    "tenant"
+  ],
+  "multiObject": false,
+  "properties": {
+    "pythonLocal": {
+      "displayName": "Python Local Extension",
+      "type": {
+        "$ref": "#/types/pythonLocal"
+      }
+    },
+    "pythonRemote": {
+      "displayName": "Python Remote Extension",
+      "type": {
+        "$ref": "#/types/pythonRemote"
+      }
+    }
+  }
+}

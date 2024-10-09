@@ -1,0 +1,16 @@
+{
+	"enabled": true,
+	"description": "azure_ddu_monitoring activation",
+	"version": "0.0.3",
+	"activationContext": "REMOTE",
+	"pythonRemote": {
+		"endpoints": [
+			{
+				"environment_url": "",
+				"api_token": "",
+				"query_interval_min": 5,
+				"summarize_by_subscription": false
+			}
+		]
+	}
+}
