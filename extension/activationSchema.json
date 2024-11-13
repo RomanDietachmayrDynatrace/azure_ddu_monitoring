@@ -36,14 +36,14 @@
           "maxItems": 1
         },
         "query_interval_min": {
-          "displayName": "Query interval in minutes",
+          "displayName": "Query interval in minutes (Minimum: 15 min)",
           "type": "integer",
           "nullable": false,
-          "default": 1,
+          "default": 15,
           "constraints": [
             {
               "type": "RANGE",
-              "minLength": 1,
+              "minLength": 15,
               "maxLength": 1440
             }
           ],
