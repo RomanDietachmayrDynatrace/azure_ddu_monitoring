@@ -7,7 +7,7 @@
       "properties": {
         "environment_url": {
           "displayName": "Dynatrace Environment URL",
-          "description": "Managed: https://{your-domain}/e/{your-environment-id} %0A SaaS: https://{your-environment-id}.live.dynatrace.com",
+          "description": "Managed: https://{your-domain}/e/{your-environment-id} | SaaS: https://{your-environment-id}.live.dynatrace.com",
           "type": "text",
           "nullable": false,
           "default": "",

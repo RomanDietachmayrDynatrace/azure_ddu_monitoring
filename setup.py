@@ -23,6 +23,9 @@ setup(name="azure_ddu_monitoring",
       packages=find_packages(),
       python_requires=">=3.10",
       include_package_data=True,
-      install_requires=["dt-extensions-sdk"],
+      install_requires=[
+          "dt-extensions-sdk",
+          "requests"
+          ],
       extras_require={"dev": ["dt-extensions-sdk[cli]"]},
       )

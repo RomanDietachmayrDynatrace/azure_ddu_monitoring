@@ -15,7 +15,7 @@ class ExtensionImpl(Extension):
             # Dynatrace Tenant URL | Managed: https://{your-domain}/e/{your-environment-id} | SaaS: https://{your-environment-id}.live.dynatrace.com
             environment_url = endpoint["environment_url"]
 
-            # API Token with following permissions: Read entities, Read metrics, Ingest metrics
+            # API Token with following permissions: Read entities, Read metrics
             api_token = endpoint["api_token"]
 
             # Query interval in minutes to collect DDU consumption (Minimum: 15 min)
