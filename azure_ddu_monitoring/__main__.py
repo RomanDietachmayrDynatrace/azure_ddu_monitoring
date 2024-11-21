@@ -343,8 +343,8 @@ class ExtensionImpl(Extension):
                 batch_size = 500
                 batches = [metric_lines[i:i + batch_size] for i in range(0, len(metric_lines), batch_size)]
 
-                #for batch in batches:
-                    #self.report_mint_lines(batch)
+                for batch in batches:
+                    self.report_mint_lines(batch)
 
                 self.logger.info("Successfully reported consumption metrics.")
 
