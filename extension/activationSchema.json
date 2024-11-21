@@ -54,6 +54,12 @@
           "type": "boolean",
           "default": false,
           "maxItems": 1
+        },
+        "verify_ssl": {
+          "displayName": "Enable SSL verification for API requests",
+          "type": "boolean",
+          "default": true,
+          "maxItems": 1
         }
       }
     },

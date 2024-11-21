@@ -24,6 +24,9 @@ class ExtensionImpl(Extension):
             # Reporting mode - if enabled summarize consumption by Azure subscription otherwise by Azure entity
             summarize_by_subscription = endpoint["summarize_by_subscription"]
 
+            # Enable/disable verify SSL certificate for API requests
+            verify_ssl = endpoint["verify_ssl"]
+
             # ================================================================================================
             # ================================================================================================
 
@@ -31,7 +34,7 @@ class ExtensionImpl(Extension):
             self.schedule(
                 self.report_azure_consumption, 
                 query_interval_min*60, 
-                args=(environment_url, api_token, query_interval_min, summarize_by_subscription)
+                args=(environment_url, api_token, query_interval_min, summarize_by_subscription, verify_ssl)
                 )
 
             self.logger.info(f"Scheduled query for endpoint with url '{environment_url}' and {query_interval_min} min interval")
@@ -51,7 +54,7 @@ class ExtensionImpl(Extension):
         """
         return Status(StatusValue.OK)
     
-    def report_azure_consumption(self, environment_url, api_token, query_interval_min, summarize_by_subscription):
+    def report_azure_consumption(self, environment_url, api_token, query_interval_min, summarize_by_subscription, verify_ssl):
 
         # ================================================================================================
         # ================================================================================================
@@ -109,7 +112,7 @@ class ExtensionImpl(Extension):
                         "api-token": api_token, 
                         "nextPageKey": next_page_key 
                     }
-                response = requests.get(metrics_query_api, params)
+                response = requests.get(metrics_query_api, params, verify=verify_ssl)
                 json = response.json()
                 
                 metric_consumption_list.extend(json["result"][0]["data"])
@@ -138,7 +141,7 @@ class ExtensionImpl(Extension):
                         "api-token": api_token, 
                         "nextPageKey": next_page_key 
                     }
-                response = requests.get(metrics_query_api, params)
+                response = requests.get(metrics_query_api, params, verify=verify_ssl)
                 json = response.json()
                 
                 classic_metric_consumption_list.extend(json["result"][0]["data"])
@@ -168,7 +171,7 @@ class ExtensionImpl(Extension):
                         "api-token": api_token, 
                         "nextPageKey": next_page_key 
                     }
-                response = requests.get(monitored_entities_api, params)
+                response = requests.get(monitored_entities_api, params, verify=verify_ssl)
                 json = response.json()
 
                 azure_entities.extend(json["entities"])
@@ -211,7 +214,7 @@ class ExtensionImpl(Extension):
                                 "api-token": api_token, 
                                 "nextPageKey": next_page_key 
                             }
-                        response = requests.get(monitored_entities_api, params)
+                        response = requests.get(monitored_entities_api, params, verify=verify_ssl)
                         json = response.json()
 
                         classic_entities.extend(json["entities"])
@@ -238,7 +241,7 @@ class ExtensionImpl(Extension):
                             "api-token": api_token, 
                             "nextPageKey": next_page_key 
                         }
-                    response = requests.get(monitored_entities_api, params)
+                    response = requests.get(monitored_entities_api, params, verify=verify_ssl)
                     json = response.json()
 
                     subscription_entities = json["entities"]
