@@ -332,9 +332,9 @@ class ExtensionImpl(Extension):
                 # Report consumption by Azure entity
                 # ================================================================================================
                 for record in entity_dict.values():
-                    dimensions = f"dt.entity.custom_device={record['entity_id']},entity.name={record['entity_name']},entity.type={record['entity_type']},azure.subscription.id={record['subscription_id']},azure.subscription.name={record['subscription_name']}"
+                    dimensions = f"dt.entity.custom_device={record.entity_id},entity.name={record.entity_name},entity.type={record.entity_type},azure.subscription.id={record.subscription_id},azure.subscription.name={record.subscription_name}"
                     
-                    metric_line = f"consumption.ddu.metrics.azure.ddus_by_entity,{dimensions} {record['metric_ddus']}"
+                    metric_line = f"consumption.ddu.metrics.azure.ddus_by_entity,{dimensions} {record.metric_ddus}"
                     metric_lines.append(metric_line)
             
             # Report metrics according to metric line protocol in batches
@@ -343,8 +343,8 @@ class ExtensionImpl(Extension):
                 batch_size = 500
                 batches = [metric_lines[i:i + batch_size] for i in range(0, len(metric_lines), batch_size)]
 
-                for batch in batches:
-                    self.report_mint_lines(batch)
+                #for batch in batches:
+                    #self.report_mint_lines(batch)
 
                 self.logger.info("Successfully reported consumption metrics.")
 
