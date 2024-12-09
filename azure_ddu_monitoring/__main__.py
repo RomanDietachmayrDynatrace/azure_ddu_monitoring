@@ -162,12 +162,12 @@ class ExtensionImpl(Extension):
             # Collect DDU metric consumption for each Azure subscription
             # ================================================================================================
 
-            self.logger.info(f"Collecting consumption of Cloud Azure entities for subscription {subscription_id} / {subscription_name}.")
-
             for subscription_entity_id in subscription_entity_dict:
             
                 subscription_id = subscription_entity_dict[subscription_entity_id]["subscription_id"]
                 subscription_name = subscription_entity_dict[subscription_entity_id]["subscription_name"]
+
+                self.logger.info(f"Collecting consumption of Cloud Azure entities for subscription {subscription_id} / {subscription_name}.")
 
                 # Fetch billed DDUs of Cloud Azure entities for the given Azure subscription
                 # ================================================================================================
@@ -250,7 +250,7 @@ class ExtensionImpl(Extension):
             # Collect DDU metric consumption for each Classic Azure entity type
             # ================================================================================================
 
-            self.logger.info(f"Collecting consumption of Classic Azure entities.")
+            self.logger.info(f"Collecting consumption of Classic Azure entities for all subscriptions.")
 
             for classic_type in CLASSIC_TYPES:
                 
